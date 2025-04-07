@@ -21,7 +21,7 @@ pipeline {
      steps {
        script {
          def Image = docker.build("${env.DOCKER_REPO}:${env.BUILD_ID}")
-         docker.withRegistry('https://registry-1.docker.io', '${TOKEN}') {
+         docker.withRegistry('https://registry-1.docker.io', 'hub_token') {
            Image.push()
          }
        }

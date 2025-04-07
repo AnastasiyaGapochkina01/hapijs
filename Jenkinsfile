@@ -1,6 +1,6 @@
 def git_url = "git@github.com:AnastasiyaGapochkina01/hapijs.git"
 pipeline {
-  agent { lables 'yandex' }
+  agent any
   parameters {
     gitParameter (name: 'branch', type: 'PT_BRANCH', quickFilterEnabled: true)
   }

@@ -21,10 +21,11 @@ pipeline {
      steps {
        withCredentials([usernamePassword(credentialsId: 'hub_token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
            script {
-             def Image = docker.build("${env.DOCKER_REPO}:${env.BUILD_ID}")
-             docker.withRegistry('https://registry-1.docker.io', '${PASSWORD}') {
-               Image.push()
-             }
+             sh """
+               sudo docker build -t "${env.DOCKER_REPO}:${env.BUILD_ID}"
+               sudo docker login -u ${USERNAME} -p ${PASSWORD}
+               sudo docker push "${env.DOCKER_REPO}:${env.BUILD_ID}"
+             """
            }
        }
     }

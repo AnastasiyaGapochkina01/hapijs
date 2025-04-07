@@ -22,7 +22,7 @@ pipeline {
        withCredentials([usernamePassword(credentialsId: 'hub_token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
            script {
              sh """
-               sudo docker build -t "${env.DOCKER_REPO}:${env.BUILD_ID} ./"
+               sudo docker build -t "${env.DOCKER_REPO}:${env.BUILD_ID}" ./
                sudo docker login -u ${USERNAME} -p ${PASSWORD}
                sudo docker push "${env.DOCKER_REPO}:${env.BUILD_ID}"
              """

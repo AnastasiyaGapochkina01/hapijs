@@ -48,7 +48,7 @@ pipeline {
     }
    }
   stage('Deploy') {
-    step {
+    steps {
         script {
           sshCommand remote: remote, command: """
              set -ex ; set -o pipefail
